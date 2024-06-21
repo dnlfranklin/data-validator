@@ -4,22 +4,34 @@
  * @method static boolean isValid(mixed $value, string $type)
  */
 
-namespace DataValidator\Field;
+namespace DataValidator\Field\Type;
+
+use DataValidator\Field\Field;
+use DataValidator\Lang\Translator;
 
 class VarType extends Field{
 
     const AVAILABLE_FILTERS = [
-        'ARRAY', 'BOOL', 'BOOLEAN', 'CALLABLE', 'DOMAIN', 
-        'EMAIL', 'FLOAT', 'INT', 'IP', 'JSON', 
-        'HEX', 'MAC', 'OBJECT', 'STRING', 'URL'         
+        'ARRAY', 'BOOL', 'BOOLEAN', 'CALLABLE', 'DOMAIN', 'EMAIL', 
+        'FLOAT', 'INFINITE', 'INT', 'IP', 'JSON', 'HEX', 
+        'MAC', 'NAN', 'NUMERIC', 'OBJECT', 'STRING', 'URL'  
     ];
 
-    private $filter = 'STRING';
+    public function __construct(private string $type, private bool $opposite = false){}
     
     public function validate($value):bool {
-        $name = parent::getName();
-
-        switch($this->filter){
+        $type = strtoupper($this->type);
+        
+        switch($type){
+            case 'NUMERIC':
+                $valid = is_numeric($value);
+                break;
+            case 'NAN':
+                $valid = is_nan($value);
+                break;
+            case 'INFINITE':
+                $valid = is_infinite($value);
+                break;
             case 'STRING':
                 $valid = is_string($value);
                 break;
@@ -43,7 +55,7 @@ class VarType extends Field{
             case 'IP':
             case 'MAC':
             case 'URL':
-                $constant = constant('FILTER_VALIDATE_'.$this->filter);
+                $constant = constant('FILTER_VALIDATE_'.$type);
                 $valid = filter_var($value, $constant) === false ? false : true; 
                 break;                   
             case 'JSON':
@@ -58,30 +70,21 @@ class VarType extends Field{
             case 'HEX':
                 $valid = ctype_xdigit($value);                    
                 break;
+            default:
+                $valid = true;
+        }
+
+        if($this->opposite && $valid){
+            parent::newError(Translator::translate("Cannot be %s", $type));
+            
+            return !$valid;
         }
 
         if(!$valid){
-            parent::newError("Field {$name} is not a valid {$this->filter}.");   
+            parent::newError(Translator::translate("Is not a valid %s", $type));   
         }
 
         return $valid;
-    }
-
-    public function setFilter(string $filter):void {
-        $filter = strtoupper($filter);
-        
-        if( !in_array($filter, self::AVAILABLE_FILTERS) ){
-            throw new \Exception('Invalid var type.');
-        }
-
-        $this->filter = $filter;
-    }
-
-    public static function create(string $fieldname, string $type):Field {
-        $field = new self($fieldname);
-        $field->setFilter($type);
-
-        return $field;
-    }
+    }    
 
 }

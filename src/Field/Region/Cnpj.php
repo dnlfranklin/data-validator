@@ -4,27 +4,28 @@
  * @method static boolean isValid(mixed $value, bool $mask = true)
  */
 
-namespace DataValidator\Field;
+namespace DataValidator\Field\Region;
+
+use DataValidator\Field\Field;
+use DataValidator\Lang\Translator;
 
 class Cnpj extends Field{
 
-    private $mask = true;
+    public function __construct(private bool $mask = true){}
 
     public function validate($value):bool {
         try {
-            $name = parent::getName();
-            
             if( !$this->mask && !ctype_digit($value)){
-                throw new \Exception("Field {$name} only accepts numbers.");
+                throw new \Exception("Only accepts numbers");
             }
             
             if($this->mask && !ctype_digit($value) && !preg_match("/[0-9]{2}[\.][0-9]{3}[\.][0-9]{3}[\/][0-9]{4}[-][0-9]{2}/", $value)) {
-                throw new \Exception("Field {$name} is not a valid CNPJ.");
+                throw new \Exception("Is not a valid %s");
             }
     
             $cnpj = preg_replace( "@[./-]@", "", $value );
             if(strlen( $cnpj ) <> 14 or !is_numeric($cnpj)){
-                throw new \Exception("Field {$name} is not a valid CNPJ.");
+                throw new \Exception("Is not a valid %s");
             }
 
             $k = 6;
@@ -55,27 +56,16 @@ class Cnpj extends Field{
             $valid = ( substr($cnpj, 12, 1) == $digito1 and substr($cnpj, 13, 1) == $digito2 );
             
             if (!$valid){
-                throw new \Exception("Field {$name} is not a valid CNPJ.");
+                throw new \Exception("Is not a valid %s");
             }
     
             return true;
         }
         catch(\Exception $e){
-            parent::newError("Field {$name} is not a valid CNPJ.");
+            parent::newError(Translator::translate($e->getMessage(), 'CNPJ'));
 
             return false;
         }
-    }
-
-    public function allowMask(bool $option):void {
-        $this->mask = $option;
-    }
-    
-    public static function create(string $fieldname, bool $mask = true):Field {
-        $field = new self($fieldname);
-        $field->allowMask($mask);    
-
-        return $field;
     }
 
 }

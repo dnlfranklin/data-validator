@@ -1,117 +1,168 @@
 <?php
 
 /**
- * @method void type_string(string $fieldname)
+ * @method Container enum(string $fieldname, Array $options)
  * 
- * @method void type_float(string $fieldname)
+ * @method Container multidimensional(string $fieldname, Array $structure, bool $recursive = false)
+ * 
+ * @method Container not_in(string $fieldname, Array $options)
+ * 
+ * @method Container equal(string $fieldname, bool $force_type = false)
+ * 
+ * @method Container length(string $fieldname, int $min = 0, int|null $max = null)
+ * 
+ * @method Container not_empty(string $fieldname)
+ * 
+ * @method Container not_equal(string $fieldname, bool $force_type = false)
+ * 
+ * @method Container range(string $fieldname, int|float|null $min = null, int|float|null $max = null)
+ * 
+ * @method Container range_date(string $fieldname, string $min_date = null, string $max_date = null)
+ * 
+ * @method Container regex(string $fieldname, string $regex)
+ * 
+ * @method Container custom_validation(string $fieldname, callable $callable_validation)
+ * 
+ * @method Container mask_cep(string $fieldname)
+ * 
+ * @method Container mask_phone(string $fieldname)
+ * 
+ * @method Container mask_phone_E1641(string $fieldname)
+ * 
+ * @method Container mask_uuid(string $fieldname)
+ * 
+ * @method Container cpf(string $fieldname, bool $allow_mask = true)
+ * 
+ * @method Container cnpj(string $fieldname, bool $allow_mask = true)
+ * 
+ * @method Container date(string $fieldname, $format = 'Y-m-d')
+ * 
+ * @method Container array(string $fieldname)
+ * 
+ * @method Container bool(string $fieldname)
+ * 
+ * @method Container boolean(string $fieldname)
+ * 
+ * @method Container callable(string $fieldname)
+ * 
+ * @method Container email(string $fieldname)
+ * 
+ * @method Container float(string $fieldname)
  *
- * @method void type_int(string $fieldname)
+ * @method Container int(string $fieldname)
  * 
- * @method void type_boolean(string $fieldname)
- * 
- * @method void type_bool(string $fieldname)
- * 
- * @method void type_email(string $fieldname)
- * 
- * @method void type_ip(string $fieldname)
- * 
- * @method void type_mac(string $fieldname)
- * 
- * @method void type_url(string $fieldname)
- * 
- * @method void type_json(string $fieldname)
- * 
- * @method void type_hex(string $fieldname)
- * 
- * @method void type_array(string $fieldname)
- * 
- * @method void type_object(string $fieldname)
- * 
- * @method void type_callable(string $fieldname)
- * 
- * @method void mask_cpf(string $fieldname)
- * 
- * @method void mask_cnpj(string $fieldname)
+ * @method Container integer(string $fieldname)
  *
- * @method void mask_cep(string $fieldname)
+ * @method Container ip(string $fieldname)
  * 
- * @method void mask_uuid(string $fieldname)
+ * @method Container json(string $fieldname)
  * 
- * @method void mask_phone(string $fieldname)
+ * @method Container hex(string $fieldname)
  * 
- * @method void mask_phone_number(string $fieldname)
+ * @method Container mac(string $fieldname)
  * 
- * @method void mask_phone_with_ddd(string $fieldname)
+ * @method Container numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
  * 
- * @method void mask_phone_with_ddi(string $fieldname)
+ * @method Container object(string $fieldname)
  * 
- * @method void mask_phone_E1641(string $fieldname)
+ * @method Container string(string $fieldname)
  * 
- * @method void cpf(string $fieldname, bool $allow_mask = true)
+ * @method Container url(string $fieldname)
  * 
- * @method void cnpj(string $fieldname, bool $allow_mask = true)
+ * @method Container not_array(string $fieldname)
  * 
- * @method void custom(string $fieldname, callable $callable_validation)
+ * @method Container not_bool(string $fieldname)
  * 
- * @method void date(string $fieldname, string $min_date = null, string $max_date = null, string $format = 'Y-m-d')
+ * @method Container not_boolean(string $fieldname)
  * 
- * @method void enum(string $fieldname, Array $options)
+ * @method Container not_callable(string $fieldname)
  * 
- * @method void length(string $fieldname, int $min = 0, int|null $max = null)
+ * @method Container not_email(string $fieldname)
  * 
- * @method void not_empty(string $fieldname)
+ * @method Container not_float(string $fieldname)
+ *
+ * @method Container not_int(string $fieldname)
  * 
- * @method void numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
+ * @method Container not_integer(string $fieldname)
+ *
+ * @method Container not_ip(string $fieldname)
  * 
- * @method void range(string $fieldname, int|float $min = null, int|float $max = null)
+ * @method Container not_json(string $fieldname)
  * 
- * @method void regex(string $fieldname, string $regex)
+ * @method Container not_hex(string $fieldname)
+ * 
+ * @method Container not_mac(string $fieldname)
+ * 
+ * @method Container not_numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
+ * 
+ * @method Container not_object(string $fieldname)
+ * 
+ * @method Container not_string(string $fieldname)
+ * 
+ * @method Container not_url(string $fieldname)
  */
 
 namespace DataValidator;
 
 use DataValidator\Field\Field;
+use DataValidator\Lang\Translator;
 
 class Container{
 
     const ALIAS = [
-        'type_string'         => ['field' => '\Field\VarType',             'params' => ['string']],
-        'type_float'          => ['field' => '\Field\VarType',             'params' => ['float']],
-        'type_int'            => ['field' => '\Field\VarType',             'params' => ['int']],
-        'type_boolean'        => ['field' => '\Field\VarType',             'params' => ['boolean']],
-        'type_bool'           => ['field' => '\Field\VarType',             'params' => ['bool']],
-        'type_email'          => ['field' => '\Field\VarType',             'params' => ['email']],
-        'type_ip'             => ['field' => '\Field\VarType',             'params' => ['ip']],
-        'type_mac'            => ['field' => '\Field\VarType',             'params' => ['mac']],
-        'type_url'            => ['field' => '\Field\VarType',             'params' => ['url']],
-        'type_json'           => ['field' => '\Field\VarType',             'params' => ['json']],
-        'type_hex'            => ['field' => '\Field\VarType',             'params' => ['hex']],
-        'type_array'          => ['field' => '\Field\VarType',             'params' => ['array']],
-        'type_object'         => ['field' => '\Field\VarType',             'params' => ['object']],
-        'type_callable'       => ['field' => '\Field\VarType',             'params' => ['callable']],
-        'mask_cpf'            => ['field' => '\Field\Mask',                'params' => ['cpf']],
-        'mask_cnpj'           => ['field' => '\Field\Mask',                'params' => ['cnpj']],
-        'mask_cep'            => ['field' => '\Field\Mask',                'params' => ['cep']],
-        'mask_uuid'           => ['field' => '\Field\Mask',                'params' => ['uuid']],
-        'mask_phone'          => ['field' => '\Field\Mask',                'params' => ['phone']],
-        'mask_phone_number'   => ['field' => '\Field\Mask',                'params' => ['phone_number']],
-        'mask_phone_with_ddd' => ['field' => '\Field\Mask',                'params' => ['phone_with_ddd']],
-        'mask_phone_with_ddi' => ['field' => '\Field\Mask',                'params' => ['phone_with_ddi']],
-        'mask_phone_E1641'    => ['field' => '\Field\Mask',                'params' => ['phone_E1641']],
-        'cpf'                 => ['field' => '\Field\Cpf',                 'params' => []],
-        'cnpj'                => ['field' => '\Field\Cnpj',                'params' => []],
-        'custom'              => ['field' => '\Field\Custom',              'params' => []],
-        'date'                => ['field' => '\Field\Date',                'params' => []],
-        'enum'                => ['field' => '\Field\Enum',                'params' => []],
-        'length'              => ['field' => '\Field\Length',              'params' => []],
-		'not_empty'           => ['field' => '\Field\NotEmpty',            'params' => []],
-        'numeric'             => ['field' => '\Field\Numeric',             'params' => []],
-        'range'               => ['field' => '\Field\Range',               'params' => []],
-        'regex'               => ['field' => '\Field\Regex',               'params' => []],
+        'enum'              => ['field' => \DataValidator\Field\Array\Enum::class],
+        'multidimensional'  => ['field' => \DataValidator\Field\Array\Multidimensional::class],
+        'not_in'            => ['field' => \DataValidator\Field\Array\NotIn::class],
+        'equal'             => ['field' => \DataValidator\Field\Calculation\Equal::class],
+        'length'            => ['field' => \DataValidator\Field\Calculation\Length::class],
+        'not_empty'         => ['field' => \DataValidator\Field\Calculation\NotEmpty::class],
+        'not_equal'         => ['field' => \DataValidator\Field\Calculation\NotEqual::class],
+        'range'             => ['field' => \DataValidator\Field\Calculation\Range::class],
+        'range_date'        => ['field' => \DataValidator\Field\Calculation\RangeDate::class],
+        'regex'             => ['field' => \DataValidator\Field\Calculation\Regex::class],
+        'custom_validation' => ['field' => \DataValidator\Field\Callable\Custom::class],
+        'mask_cep'          => ['field' => \DataValidator\Field\Mask\Cep::class],
+        'mask_phone'        => ['field' => \DataValidator\Field\Mask\Phone::class],
+        'mask_phone_E1641'  => ['field' => \DataValidator\Field\Mask\PhoneE1641::class],
+        'mask_uuid'         => ['field' => \DataValidator\Field\Mask\Uuid::class],
+        'cpf'               => ['field' => \DataValidator\Field\Region\Cpf::class],
+        'cnpj'              => ['field' => \DataValidator\Field\Region\Cnpj::class],
+        'date'              => ['field' => \DataValidator\Field\Type\Date::class],
+        'array'             => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['array']],
+        'bool'              => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['bool']],
+        'boolean'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['boolean']],
+        'callable'          => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['callable']],
+        'email'             => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['email']],
+        'float'             => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['float']],
+        'int'               => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['int']],
+        'integer'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['int']],
+        'ip'                => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['ip']],
+        'json'              => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['json']],
+        'hex'               => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['hex']],
+        'mac'               => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['mac']],
+        'numeric'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['numeric']],
+        'object'            => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['object']],
+        'string'            => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['string']],
+        'url'               => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['url']],
+        'not_array'         => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['array', true]],
+        'not_bool'          => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['bool', true]],
+        'not_boolean'       => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['boolean', true]],
+        'not_callable'      => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['callable', true]],
+        'not_email'         => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['email', true]],
+        'not_float'         => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['float', true]],
+        'not_int'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['int', true]],
+        'not_integer'       => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['int', true]],
+        'not_ip'            => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['ip', true]],
+        'not_json'          => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['json', true]],
+        'not_hex'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['hex', true]],
+        'not_mac'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['mac', true]],
+        'not_numeric'       => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['numeric', true]],
+        'not_object'        => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['object', true]],
+        'not_string'        => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['string', true]],
+        'not_url'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['url', true]],
     ];
 
     private $validations = [];
-    private $conditional_validations = [];
     private $errors = [];
 
 
@@ -131,80 +182,67 @@ class Container{
         }
     }
 
-    public function add(Field $validator, string $custom_error_message = ''){
+    public function add(string $fieldname, Field $validator){
         $this->validations[] = [
-            'validator' => $validator,
-            'custom_error_message' => $custom_error_message
+            'fieldname' => $fieldname,
+            'validator' => $validator
         ]; 
+
+        return $this;
     }
 
-    public function addConditional(string $reference_fieldname, mixed $reference_fieldname_value, Field $validator, string $custom_error_message = ''){
-        $this->conditional_validations[] = [
-            'reference' => $reference_fieldname,
-            'reference_value' => $reference_fieldname_value,
-            'validator' => $validator,
-            'custom_error_message' => $custom_error_message
+    public function addConditional(
+        string $conditional_fieldname, 
+        Field $conditional_validator, 
+        string $fieldname,
+        Field $validator
+    ){
+        $this->validations[] = [
+            'conditional_fieldname' => $conditional_fieldname,
+            'conditional_validator' => $conditional_validator,
+            'fieldname' => $fieldname,
+            'validator' => $validator
         ];
+
+        return $this;
     }
-    
+
     public function validate(Array|object $data){
         if( is_array($data) ){
             $data = (object) $data;
         }
         
-        foreach( $this->validations as $validation ){
-            $custom_error_message = $validation['custom_error_message'];
+        foreach($this->validations as $validation){
+            $fieldname = $validation['fieldname']; 
             $validator = $validation['validator'];
-            $fieldname = $validator->getName(); 
 
-            if( !property_exists($data, $fieldname) ){
-                $this->errors[] = \DataValidator\Error::new($fieldname, 'Field not sent in data.');
+            if(isset($validation['conditional_fieldname'])){
+                $conditional_fieldname = $validation['conditional_fieldname'];    
+                $conditional_validator = $validation['conditional_validator'];
+                
+                if(property_exists($data, $conditional_fieldname)){
+                    if(!$conditional_validator->validate($data->{$conditional_fieldname})){
+                        continue;
+                    }
+                }
+            }
+
+            if(!property_exists($data, $fieldname)){
+                $this->errors[] = \DataValidator\Error::new(
+                    $fieldname, 
+                    Translator::translate('Field not sent in data')
+                );
 
                 continue;
             }
                 
-            $validator->setCustomErrorMessage($custom_error_message);
-
-            if( !$validator->validate($data->{$fieldname}) ){
-                foreach( $validator->getErrors() as $error ){
-                    $this->errors[] = $error;
+            if(!$validator->validate($data->{$fieldname})){
+                foreach($validator->getErrors() as $error){
+                    $this->errors[] = \DataValidator\Error::new($fieldname, $error);
                 }
             }             
         }
 
-        foreach($this->conditional_validations as $cv){
-            $reference = $cv['reference'];
-            $reference_value = $cv['reference_value'];
-            $validator = $cv['validator'];
-            $fieldname = $validator->getName(); 
-            $custom_error_message = $cv['custom_error_message'];
-            
-            if( property_exists($data, $reference) ){
-                if($reference_value instanceof Field){
-                    if( !$reference_value->validate($data->{$reference}) ){
-                        continue;    
-                    }
-                }
-                else if($data->{$reference} != $reference_value){
-                    continue;
-                }
-
-                if( !property_exists($data, $fieldname) ){
-                    $this->errors[] = \DataValidator\Error::new($fieldname, 'Field not sent in data.');
-    
-                    continue;
-                }
-
-                $validator->setCustomErrorMessage($custom_error_message);
-
-                if( !$validator->validate($data->{$fieldname}) ){
-                    foreach( $validator->getErrors() as $error ){
-                        $this->errors[] = $error;
-                    }
-                }
-            }
-        }
-        
         return empty($this->getErrors());
     }
 
@@ -221,26 +259,16 @@ class Container{
 
         $alias = self::ALIAS[$method];
         
-        $params = [$fieldname];
+        $params = empty($alias['params']) ? $args : $alias['params'];
             
-        foreach($alias['params'] as $param){
-            $params[] = $param;
-        }
-        
-        foreach($args as $arg){
-            $params[] = $arg;
-        }
-        
-        $classname = __NAMESPACE__.$alias['field'];
+        $classname = $alias['field'];
 
-        if(method_exists($classname, 'create')){
-            $field = call_user_func_array([$classname, 'create'], $params);
-        }
-        else{
-            $field = new $classname($fieldname);
-        }
+        $rc = new \ReflectionClass($classname);
+        $field = $rc->newInstanceArgs($params);
 
-        $this->add($field);
+        $this->add($fieldname, $field);
+
+        return $this;
     }
 
 }

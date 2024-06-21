@@ -4,17 +4,18 @@
  * @method static boolean isValid(mixed $value, Array $options)
  */
 
-namespace DataValidator\Field;
+namespace DataValidator\Field\Array;
+
+use DataValidator\Field\Field;
+use DataValidator\Lang\Translator;
 
 class Enum extends Field{
 
-    private $options = [];
+    public function __construct(private Array $options){}
 
     public function validate($value):bool {
         if( !in_array($value, $this->options) ){
-            $name = parent::getName();
-
-            parent::newError("Field {$name} does not contain a valid option.");   
+            parent::newError(Translator::translate("Does not contain a valid option"));   
             
             return false;
         }
@@ -25,13 +26,6 @@ class Enum extends Field{
         foreach($options as $option){
             $this->options[] = $option;
         }        
-    }
-
-    public static function create(string $fieldname, Array $options):Field {
-        $field = new self($fieldname);
-        $field->addOptions($options);        
-
-        return $field;
-    }
+    }    
 
 }

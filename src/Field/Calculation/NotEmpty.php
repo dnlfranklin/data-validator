@@ -4,7 +4,10 @@
  * @method static boolean isValid(mixed $value)
  */
 
-namespace DataValidator\Field;
+namespace DataValidator\Field\Calculation;
+
+use DataValidator\Field\Field;
+use DataValidator\Lang\Translator;
 
 class NotEmpty extends Field{
 
@@ -15,9 +18,7 @@ class NotEmpty extends Field{
           OR (is_array($value) AND count($value)==1 AND isset($value[0]) AND self::scalarEmpty($value[0]))
           OR (is_array($value) AND empty($value)) )
         {
-            $name = parent::getName();
-            
-            parent::newError("Field {$name} cannot be empty.");   
+            parent::newError(Translator::translate("Cannot be empty"));   
             
             return false;
         }           
