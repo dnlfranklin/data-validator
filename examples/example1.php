@@ -1,6 +1,5 @@
 <?php
 
-use DataValidator\Container;
 use DataValidator\Field\Array\Enum;
 use DataValidator\Field\Array\Multidimensional;
 use DataValidator\Field\Calculation\Equal;
@@ -9,6 +8,7 @@ use DataValidator\Field\Region\Cpf;
 use DataValidator\Field\Type\Floatval;
 use DataValidator\Field\Type\Integer;
 use DataValidator\Field\Type\Stringval;
+use DataValidator\Validator;
 
 require '../vendor/autoload.php';
 
@@ -51,8 +51,8 @@ $request = [
 //Impede que seja disparado um Exception após validações mal sucedidas
 DataValidator\Error::throw(false);
 
-$container = new Container;
-$container->cnpj('meucnpj')
+$validator = new Validator;
+$validator->cnpj('meucnpj')
           ->cpf('meucpf')
           ->integer('meuint')
           ->string('minhastring')
@@ -82,6 +82,6 @@ $container->cnpj('meucnpj')
             ]
 );
 
-$container->validate($request);
+$validator->validate($request);
 
-var_dump($container->getErrors());
+var_dump($validator->getErrors());

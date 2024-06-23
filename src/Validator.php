@@ -1,113 +1,111 @@
 <?php
 
 /**
- * @method Container enum(string $fieldname, Array $options)
+ * @method Validator enum(string $fieldname, Array $options)
  * 
- * @method Container multidimensional(string $fieldname, Array $structure, bool $recursive = false)
+ * @method Validator multidimensional(string $fieldname, Array $structure, bool $recursive = false)
  * 
- * @method Container not_in(string $fieldname, Array $options)
+ * @method Validator not_in(string $fieldname, Array $options)
  * 
- * @method Container equal(string $fieldname, bool $force_type = false)
+ * @method Validator equal(string $fieldname, bool $force_type = false)
  * 
- * @method Container length(string $fieldname, int $min = 0, int|null $max = null)
+ * @method Validator length(string $fieldname, int $min = 0, int|null $max = null)
  * 
- * @method Container not_empty(string $fieldname)
+ * @method Validator not_empty(string $fieldname)
  * 
- * @method Container not_equal(string $fieldname, bool $force_type = false)
+ * @method Validator not_equal(string $fieldname, bool $force_type = false)
  * 
- * @method Container range(string $fieldname, int|float|null $min = null, int|float|null $max = null)
+ * @method Validator range(string $fieldname, int|float|null $min = null, int|float|null $max = null)
  * 
- * @method Container range_date(string $fieldname, string $min_date = null, string $max_date = null)
+ * @method Validator range_date(string $fieldname, string $min_date = null, string $max_date = null)
  * 
- * @method Container regex(string $fieldname, string $regex)
+ * @method Validator regex(string $fieldname, string $regex)
  * 
- * @method Container custom_validation(string $fieldname, callable $callable_validation)
+ * @method Validator custom_validation(string $fieldname, callable $callable_validation)
  * 
- * @method Container mask_cep(string $fieldname)
+ * @method Validator mask_cep(string $fieldname)
  * 
- * @method Container mask_phone(string $fieldname)
+ * @method Validator mask_phone(string $fieldname)
  * 
- * @method Container mask_phone_E1641(string $fieldname)
+ * @method Validator mask_phone_E1641(string $fieldname)
  * 
- * @method Container mask_uuid(string $fieldname)
+ * @method Validator mask_uuid(string $fieldname)
  * 
- * @method Container cpf(string $fieldname, bool $allow_mask = true)
+ * @method Validator cpf(string $fieldname, bool $allow_mask = true)
  * 
- * @method Container cnpj(string $fieldname, bool $allow_mask = true)
+ * @method Validator cnpj(string $fieldname, bool $allow_mask = true)
  * 
- * @method Container date(string $fieldname, $format = 'Y-m-d')
+ * @method Validator date(string $fieldname, $format = 'Y-m-d')
  * 
- * @method Container array(string $fieldname)
+ * @method Validator array(string $fieldname)
  * 
- * @method Container bool(string $fieldname)
+ * @method Validator bool(string $fieldname)
  * 
- * @method Container boolean(string $fieldname)
+ * @method Validator boolean(string $fieldname)
  * 
- * @method Container callable(string $fieldname)
+ * @method Validator callable(string $fieldname)
  * 
- * @method Container email(string $fieldname)
+ * @method Validator email(string $fieldname)
  * 
- * @method Container float(string $fieldname)
+ * @method Validator float(string $fieldname)
  *
- * @method Container int(string $fieldname)
+ * @method Validator int(string $fieldname)
  * 
- * @method Container integer(string $fieldname)
+ * @method Validator integer(string $fieldname)
  *
- * @method Container ip(string $fieldname)
+ * @method Validator ip(string $fieldname)
  * 
- * @method Container json(string $fieldname)
+ * @method Validator json(string $fieldname)
  * 
- * @method Container hex(string $fieldname)
+ * @method Validator hex(string $fieldname)
  * 
- * @method Container mac(string $fieldname)
+ * @method Validator mac(string $fieldname)
  * 
- * @method Container numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
+ * @method Validator numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
  * 
- * @method Container object(string $fieldname)
+ * @method Validator object(string $fieldname)
  * 
- * @method Container string(string $fieldname)
+ * @method Validator string(string $fieldname)
  * 
- * @method Container url(string $fieldname)
+ * @method Validator url(string $fieldname)
  * 
- * @method Container not_array(string $fieldname)
+ * @method Validator not_array(string $fieldname)
  * 
- * @method Container not_bool(string $fieldname)
+ * @method Validator not_bool(string $fieldname)
  * 
- * @method Container not_boolean(string $fieldname)
+ * @method Validator not_boolean(string $fieldname)
  * 
- * @method Container not_callable(string $fieldname)
+ * @method Validator not_callable(string $fieldname)
  * 
- * @method Container not_email(string $fieldname)
+ * @method Validator not_email(string $fieldname)
  * 
- * @method Container not_float(string $fieldname)
+ * @method Validator not_float(string $fieldname)
  *
- * @method Container not_int(string $fieldname)
+ * @method Validator not_int(string $fieldname)
  * 
- * @method Container not_integer(string $fieldname)
+ * @method Validator not_integer(string $fieldname)
  *
- * @method Container not_ip(string $fieldname)
+ * @method Validator not_ip(string $fieldname)
  * 
- * @method Container not_json(string $fieldname)
+ * @method Validator not_json(string $fieldname)
  * 
- * @method Container not_hex(string $fieldname)
+ * @method Validator not_hex(string $fieldname)
  * 
- * @method Container not_mac(string $fieldname)
+ * @method Validator not_mac(string $fieldname)
  * 
- * @method Container not_numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
+ * @method Validator not_numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
  * 
- * @method Container not_object(string $fieldname)
+ * @method Validator not_object(string $fieldname)
  * 
- * @method Container not_string(string $fieldname)
+ * @method Validator not_string(string $fieldname)
  * 
- * @method Container not_url(string $fieldname)
+ * @method Validator not_url(string $fieldname)
  */
 
 namespace DataValidator;
 
-use DataValidator\Field\Field;
-use DataValidator\Lang\Translator;
 
-class Container{
+class Validator{
 
     const ALIAS = [
         'enum'              => ['field' => \DataValidator\Field\Array\Enum::class],
@@ -182,7 +180,7 @@ class Container{
         }
     }
 
-    public function add(string $fieldname, Field $validator){
+    public function add(string $fieldname, \DataValidator\Field\Field $validator){
         $this->validations[] = [
             'fieldname' => $fieldname,
             'validator' => $validator
@@ -193,9 +191,9 @@ class Container{
 
     public function addConditional(
         string $conditional_fieldname, 
-        Field $conditional_validator, 
+        \DataValidator\Field\Field $conditional_validator, 
         string $fieldname,
-        Field $validator
+        \DataValidator\Field\Field $validator
     ){
         $this->validations[] = [
             'conditional_fieldname' => $conditional_fieldname,
@@ -230,7 +228,7 @@ class Container{
             if(!property_exists($data, $fieldname)){
                 $this->errors[] = \DataValidator\Error::new(
                     $fieldname, 
-                    Translator::translate('Field not sent in data')
+                    \DataValidator\Lang\Translator::translate('Field not sent in data')
                 );
 
                 continue;
