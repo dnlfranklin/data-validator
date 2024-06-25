@@ -142,56 +142,56 @@ $validator->validate(['field_int' => 123]); //false
 
 | Alias | Classe | Descrição |
 |-------|--------|-----------|
-|enum|DataValidator\Field\Array\Enum|Valida se valor existe dentro de um array de opções 
-|multidimensional|DataValidator\Field\Array\Multidimensional|Valida um conjunto de regras definidas a partir de um array multi dimensional
-|not_in|DataValidator\Field\Array\NotIn|Valida se o valor não existe dentro de um array de opções
-|equal|DataValidator\Field\Calculation\Equal|Valida se o valor é igual a um valor de referência
-|length|DataValidator\Field\Calculation\Length|Valida o número de caracteres de uma string
-|not_empty|DataValidator\Field\Calculation\NotEmpty|Valida se o valor não é vazio
-|not_equal|DataValidator\Field\Calculation\NotEqual|Valida se o valor não é igual a um valor de referência
-|range|DataValidator\Field\Calculation\Range|Valida se o valor está dentro de uma faixa de valores
-|range_date|DataValidator\Field\Calculation\RangeDate|Valida se a data está dentro de uma faixa de datas
-|regex|DataValidator\Field\Calculation\Regex|Valida se o valor atende uma regex estabelecida
-|custom_validation|DataValidator\Field\Callable\Custom|Valida o valor de acordo com uma função anônima definida
-|mask_cep|DataValidator\Field\Mask\Cep|Valida se valor possui a formatação de CEP
-|mask_phone|DataValidator\Field\Mask\Phone|Valida se o valor possui a formatação de telefone
-|mask_phone_E16417|DataValidator\Field\Mask\PhoneE1641|Valida se o valor possui a formatação de telefone no padrão E16417
-|mask_uuid|DataValidator\Field\Mask\Uuid|Valida se o valor contém uma formatação de UUID
-|cpf|DataValidator\Field\Region\Cpf|Valida se o valor é um CPF
-|cnpj|DataValidator\Field\Region\Cnpj|Valida se o valor é um CNPJ
-|date|DataValidator\Field\Type\Date|Valida se o valor é uma data no formato estabelecido
-|array|DataValidator\Field\Type\VarType|Valida se o valor é um array
-|bool|DataValidator\Field\Type\VarType|Valida se o valor é um boleano
-|boolean|DataValidator\Field\Type\VarType|Valida se o valor é um boleano
-|callable|DataValidator\Field\Type\VarType|Valida se o valor é uma função executável 
-|email|DataValidator\Field\Type\VarType|Valida se o valor é um email
-|float|DataValidator\Field\Type\VarType|Valida se o valor é um float
-|int|DataValidator\Field\Type\VarType|Valida se o valor é um inteiro
-|integer|DataValidator\Field\Type\VarType|Valida se o valor é um inteiro
-|ip|DataValidator\Field\Type\VarType|Valida se o valor é um ip
-|json|DataValidator\Field\Type\VarType|Valida se o valor é um json
-|hex|DataValidator\Field\Type\VarType|Valida se o valor é um hexadecimal
-|mac|DataValidator\Field\Type\VarType|Valida se o valor é um endereço mac
-|numeric|DataValidator\Field\Type\VarType|Valida se o valor é numérico
-|object|DataValidator\Field\Type\VarType|Valida se o valor é um objeto
-|string|DataValidator\Field\Type\VarType|Valida se o valor é uma string
-|url|DataValidator\Field\Type\VarType|Valida se o valor é uma url
-|not_array|DataValidator\Field\Type\VarType|Valida se o valor não é um array
-|not_bool|DataValidator\Field\Type\VarType|Valida se o valor não é um boleano
-|not_boolean|DataValidator\Field\Type\VarType|Valida se o valor não é um boleano
-|not_callable|DataValidator\Field\Type\VarType|Valida se o valor não é uma função executável 
-|not_email|DataValidator\Field\Type\VarType|Valida se o valor não é um email
-|not_float|DataValidator\Field\Type\VarType|Valida se o valor não é um float
-|not_int|DataValidator\Field\Type\VarType|Valida se o valor não é um inteiro
-|not_integer|DataValidator\Field\Type\VarType|Valida se o valor não é um inteiro
-|not_ip|DataValidator\Field\Type\VarType|Valida se o valor não é um ip
-|not_json|DataValidator\Field\Type\VarType|Valida se o valor não é um json
-|not_hex|DataValidator\Field\Type\VarType|Valida se o valor não é um hexadecimal
-|not_mac|DataValidator\Field\Type\VarType|Valida se o valor não é um endereço mac
-|not_numeric|DataValidator\Field\Type\VarType|Valida se o valor não é numérico
-|not_object|DataValidator\Field\Type\VarType|Valida se o valor não é um objeto
-|not_string|DataValidator\Field\Type\VarType|Valida se o valor não é uma string
-|not_url|DataValidator\Field\Type\VarType|Valida se o valor não é uma url
+|enum|DataValidator\Field\Array\Enum|Valida se valor existe dentro de um array de opções|
+|multidimensional|DataValidator\Field\Array\Multidimensional|Valida um conjunto de regras definidas a partir de um array multi dimensional|
+|not_in|DataValidator\Field\Array\NotIn|Valida se o valor não existe dentro de um array de opções|
+|equal|DataValidator\Field\Calculation\Equal|Valida se o valor é igual a um valor de referência|
+|length|DataValidator\Field\Calculation\Length|Valida o número de caracteres de uma string|
+|not_empty|DataValidator\Field\Calculation\NotEmpty|Valida se o valor não é vazio|
+|not_equal|DataValidator\Field\Calculation\NotEqual|Valida se o valor não é igual a um valor de referência|
+|range|DataValidator\Field\Calculation\Range|Valida se o valor está dentro de uma faixa de valores|
+|range_date|DataValidator\Field\Calculation\RangeDate|Valida se a data está dentro de uma faixa de datas|
+|regex|DataValidator\Field\Calculation\Regex|Valida se o valor atende uma regex estabelecida|
+|custom_validation|DataValidator\Field\Callable\Custom|Valida o valor de acordo com uma função anônima definida|
+|mask_cep|DataValidator\Field\Mask\Cep|Valida se valor possui a formatação de CEP|
+|mask_phone|DataValidator\Field\Mask\Phone|Valida se o valor possui a formatação de telefone|
+|mask_phone_E16417|DataValidator\Field\Mask\PhoneE1641|Valida se o valor possui a formatação de telefone no padrão E16417|
+|mask_uuid|DataValidator\Field\Mask\Uuid|Valida se o valor contém uma formatação de UUID|
+|cpf|DataValidator\Field\Region\Cpf|Valida se o valor é um CPF|
+|cnpj|DataValidator\Field\Region\Cnpj|Valida se o valor é um CNPJ|
+|date|DataValidator\Field\Type\Date|Valida se o valor é uma data no formato estabelecido|
+|array|DataValidator\Field\Type\VarType|Valida se o valor é um array|
+|bool|DataValidator\Field\Type\VarType|Valida se o valor é um boleano|
+|boolean|DataValidator\Field\Type\VarType|Valida se o valor é um boleano|
+|callable|DataValidator\Field\Type\VarType|Valida se o valor é uma função executável |
+|email|DataValidator\Field\Type\VarType|Valida se o valor é um email|
+|float|DataValidator\Field\Type\VarType|Valida se o valor é um float|
+|int|DataValidator\Field\Type\VarType|Valida se o valor é um inteiro|
+|integer|DataValidator\Field\Type\VarType|Valida se o valor é um inteiro|
+|ip|DataValidator\Field\Type\VarType|Valida se o valor é um ip|
+|json|DataValidator\Field\Type\VarType|Valida se o valor é um json|
+|hex|DataValidator\Field\Type\VarType|Valida se o valor é um hexadecimal|
+|mac|DataValidator\Field\Type\VarType|Valida se o valor é um endereço mac|
+|numeric|DataValidator\Field\Type\VarType|Valida se o valor é numérico|
+|object|DataValidator\Field\Type\VarType|Valida se o valor é um objeto|
+|string|DataValidator\Field\Type\VarType|Valida se o valor é uma string|
+|url|DataValidator\Field\Type\VarType|Valida se o valor é uma url|
+|not_array|DataValidator\Field\Type\VarType|Valida se o valor não é um array|
+|not_bool|DataValidator\Field\Type\VarType|Valida se o valor não é um boleano|
+|not_boolean|DataValidator\Field\Type\VarType|Valida se o valor não é um boleano|
+|not_callable|DataValidator\Field\Type\VarType|Valida se o valor não é uma função executável |
+|not_email|DataValidator\Field\Type\VarType|Valida se o valor não é um email|
+|not_float|DataValidator\Field\Type\VarType|Valida se o valor não é um float|
+|not_int|DataValidator\Field\Type\VarType|Valida se o valor não é um inteiro|
+|not_integer|DataValidator\Field\Type\VarType|Valida se o valor não é um inteiro|
+|not_ip|DataValidator\Field\Type\VarType|Valida se o valor não é um ip|
+|not_json|DataValidator\Field\Type\VarType|Valida se o valor não é um json|
+|not_hex|DataValidator\Field\Type\VarType|Valida se o valor não é um hexadecimal|
+|not_mac|DataValidator\Field\Type\VarType|Valida se o valor não é um endereço mac|
+|not_numeric|DataValidator\Field\Type\VarType|Valida se o valor não é numérico|
+|not_object|DataValidator\Field\Type\VarType|Valida se o valor não é um objeto|
+|not_string|DataValidator\Field\Type\VarType|Valida se o valor não é uma string|
+|not_url|DataValidator\Field\Type\VarType|Valida se o valor não é uma url|
 
 ### Tradução
 
