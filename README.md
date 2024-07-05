@@ -144,11 +144,11 @@ $validator->validate(['field_int' => 123]); //false
 |-------|--------|-----------|
 |enum|DataValidator\Field\Array\Enum|Valida se valor existe dentro de um array de opções|
 |multidimensional|DataValidator\Field\Array\Multidimensional|Valida um conjunto de regras definidas a partir de um array multi dimensional|
-|not_in|DataValidator\Field\Array\NotIn|Valida se o valor não existe dentro de um array de opções|
+|notIn|DataValidator\Field\Array\NotIn|Valida se o valor não existe dentro de um array de opções|
 |equal|DataValidator\Field\Calculation\Equal|Valida se o valor é igual a um valor de referência|
 |length|DataValidator\Field\Calculation\Length|Valida o número de caracteres de uma string|
-|not_empty|DataValidator\Field\Calculation\NotEmpty|Valida se o valor não é vazio|
-|not_equal|DataValidator\Field\Calculation\NotEqual|Valida se o valor não é igual a um valor de referência|
+|notEmpty|DataValidator\Field\Calculation\NotEmpty|Valida se o valor não é vazio|
+|notEqual|DataValidator\Field\Calculation\NotEqual|Valida se o valor não é igual a um valor de referência|
 |range|DataValidator\Field\Calculation\Range|Valida se o valor está dentro de uma faixa de valores|
 |range_date|DataValidator\Field\Calculation\RangeDate|Valida se a data está dentro de uma faixa de datas|
 |regex|DataValidator\Field\Calculation\Regex|Valida se o valor atende uma regex estabelecida|
