@@ -176,22 +176,16 @@ $validator->validate(['field_int' => 123]); //false
 |object|DataValidator\Field\Type\VarType|Valida se o valor é um objeto|
 |string|DataValidator\Field\Type\VarType|Valida se o valor é uma string|
 |url|DataValidator\Field\Type\VarType|Valida se o valor é uma url|
-|not_array|DataValidator\Field\Type\VarType|Valida se o valor não é um array|
-|not_bool|DataValidator\Field\Type\VarType|Valida se o valor não é um boleano|
-|not_boolean|DataValidator\Field\Type\VarType|Valida se o valor não é um boleano|
-|not_callable|DataValidator\Field\Type\VarType|Valida se o valor não é uma função executável |
-|not_email|DataValidator\Field\Type\VarType|Valida se o valor não é um email|
-|not_float|DataValidator\Field\Type\VarType|Valida se o valor não é um float|
-|not_int|DataValidator\Field\Type\VarType|Valida se o valor não é um inteiro|
-|not_integer|DataValidator\Field\Type\VarType|Valida se o valor não é um inteiro|
-|not_ip|DataValidator\Field\Type\VarType|Valida se o valor não é um ip|
-|not_json|DataValidator\Field\Type\VarType|Valida se o valor não é um json|
-|not_hex|DataValidator\Field\Type\VarType|Valida se o valor não é um hexadecimal|
-|not_mac|DataValidator\Field\Type\VarType|Valida se o valor não é um endereço mac|
-|not_numeric|DataValidator\Field\Type\VarType|Valida se o valor não é numérico|
-|not_object|DataValidator\Field\Type\VarType|Valida se o valor não é um objeto|
-|not_string|DataValidator\Field\Type\VarType|Valida se o valor não é uma string|
-|not_url|DataValidator\Field\Type\VarType|Valida se o valor não é uma url|
+
+### Negação
+
+É possível obter uma validação de negação através do prefixo "not_". Nesse caso se o campo tiver uma validação verdadeira, será revertida como falsa.
+
+```php
+$validator->integer('field_int')->validate(['field_int' => 123]); //true
+$validator->not_integer('field_int')->validate(['field_int' => 123]); //false
+```
+
 
 ### Tradução
 

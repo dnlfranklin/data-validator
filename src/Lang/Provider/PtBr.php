@@ -28,7 +28,8 @@ class PtBr{
         'Must be equal to %s'                                => 'Deve ser igual a %s',
         'Must be different from %s'                          => 'Deve ser diferente de %s',
         'Attribute \'%s\' is invalid: %s'                    => 'Atributo \'%s\' é inválido: %s',
-        'Attribute \'%s\' not found %s'                      => 'Atributo \'%s\' não encontrado %s'
+        'Attribute \'%s\' not found %s'                      => 'Atributo \'%s\' não encontrado %s',
+        'Invalid value for field \'%s\''                     => 'Valor inválido para o campo \'%s\'',
     ];
 
 }

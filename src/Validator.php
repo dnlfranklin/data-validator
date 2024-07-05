@@ -5,15 +5,15 @@
  * 
  * @method Validator multidimensional(string $fieldname, Array $structure, bool $recursive = false)
  * 
- * @method Validator not_in(string $fieldname, Array $options)
+ * @method Validator notIn(string $fieldname, Array $options)
  * 
  * @method Validator equal(string $fieldname, bool $force_type = false)
  * 
  * @method Validator length(string $fieldname, int $min = 0, int|null $max = null)
  * 
- * @method Validator not_empty(string $fieldname)
+ * @method Validator notEmpty(string $fieldname)
  * 
- * @method Validator not_equal(string $fieldname, bool $force_type = false)
+ * @method Validator notEqual(string $fieldname, bool $force_type = false)
  * 
  * @method Validator range(string $fieldname, int|float|null $min = null, int|float|null $max = null)
  * 
@@ -68,38 +68,6 @@
  * @method Validator string(string $fieldname)
  * 
  * @method Validator url(string $fieldname)
- * 
- * @method Validator not_array(string $fieldname)
- * 
- * @method Validator not_bool(string $fieldname)
- * 
- * @method Validator not_boolean(string $fieldname)
- * 
- * @method Validator not_callable(string $fieldname)
- * 
- * @method Validator not_email(string $fieldname)
- * 
- * @method Validator not_float(string $fieldname)
- *
- * @method Validator not_int(string $fieldname)
- * 
- * @method Validator not_integer(string $fieldname)
- *
- * @method Validator not_ip(string $fieldname)
- * 
- * @method Validator not_json(string $fieldname)
- * 
- * @method Validator not_hex(string $fieldname)
- * 
- * @method Validator not_mac(string $fieldname)
- * 
- * @method Validator not_numeric(string $fieldname, $allow_options = ['integer', 'float', 'infinite', 'nan', 'number_string', 'negative'])
- * 
- * @method Validator not_object(string $fieldname)
- * 
- * @method Validator not_string(string $fieldname)
- * 
- * @method Validator not_url(string $fieldname)
  */
 
 namespace DataValidator;
@@ -110,11 +78,11 @@ class Validator{
     const ALIAS = [
         'enum'              => ['field' => \DataValidator\Field\Array\Enum::class],
         'multidimensional'  => ['field' => \DataValidator\Field\Array\Multidimensional::class],
-        'not_in'            => ['field' => \DataValidator\Field\Array\NotIn::class],
+        'notIn'             => ['field' => \DataValidator\Field\Array\NotIn::class],
         'equal'             => ['field' => \DataValidator\Field\Calculation\Equal::class],
         'length'            => ['field' => \DataValidator\Field\Calculation\Length::class],
-        'not_empty'         => ['field' => \DataValidator\Field\Calculation\NotEmpty::class],
-        'not_equal'         => ['field' => \DataValidator\Field\Calculation\NotEqual::class],
+        'notEmpty'          => ['field' => \DataValidator\Field\Calculation\NotEmpty::class],
+        'notEqual'          => ['field' => \DataValidator\Field\Calculation\NotEqual::class],
         'range'             => ['field' => \DataValidator\Field\Calculation\Range::class],
         'range_date'        => ['field' => \DataValidator\Field\Calculation\RangeDate::class],
         'regex'             => ['field' => \DataValidator\Field\Calculation\Regex::class],
@@ -141,23 +109,7 @@ class Validator{
         'numeric'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['numeric']],
         'object'            => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['object']],
         'string'            => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['string']],
-        'url'               => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['url']],
-        'not_array'         => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['array', true]],
-        'not_bool'          => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['bool', true]],
-        'not_boolean'       => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['boolean', true]],
-        'not_callable'      => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['callable', true]],
-        'not_email'         => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['email', true]],
-        'not_float'         => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['float', true]],
-        'not_int'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['int', true]],
-        'not_integer'       => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['int', true]],
-        'not_ip'            => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['ip', true]],
-        'not_json'          => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['json', true]],
-        'not_hex'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['hex', true]],
-        'not_mac'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['mac', true]],
-        'not_numeric'       => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['numeric', true]],
-        'not_object'        => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['object', true]],
-        'not_string'        => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['string', true]],
-        'not_url'           => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['url', true]],
+        'url'               => ['field' => \DataValidator\Field\Type\VarType::class, 'params' => ['url']]
     ];
 
     private $validations = [];
@@ -180,10 +132,11 @@ class Validator{
         }
     }
 
-    public function add(string $fieldname, \DataValidator\Field\Field $validator){
+    public function add(string $fieldname, \DataValidator\Field\Field $validator, bool $reverse = false){
         $this->validations[] = [
             'fieldname' => $fieldname,
-            'validator' => $validator
+            'validator' => $validator,
+            'reverse'   => $reverse
         ]; 
 
         return $this;
@@ -213,6 +166,7 @@ class Validator{
         foreach($this->validations as $validation){
             $fieldname = $validation['fieldname']; 
             $validator = $validation['validator'];
+            $reverse   = $validation['reverse'] ?? false;
 
             if(isset($validation['conditional_fieldname'])){
                 $conditional_fieldname = $validation['conditional_fieldname'];    
@@ -233,8 +187,18 @@ class Validator{
 
                 continue;
             }
+
+            $is_valid = $validator->validate($data->{$fieldname});
                 
-            if(!$validator->validate($data->{$fieldname})){
+            if($is_valid){
+                if($reverse){
+                    $this->errors[] = \DataValidator\Error::new(
+                        $fieldname, 
+                        \DataValidator\Lang\Translator::translate('Invalid value for field \'%s\'', $fieldname)
+                    ); 
+                }    
+            }
+            else{
                 foreach($validator->getErrors() as $error){
                     $this->errors[] = \DataValidator\Error::new($fieldname, $error);
                 }
@@ -245,7 +209,15 @@ class Validator{
     }
 
     public function __call(string $method, Array $args){
-        if(!array_key_exists($method, self::ALIAS)){
+        $reverse = false;
+        $key = $method;
+
+        if(str_starts_with($method, 'not_')){
+            $key = substr($method, 4);
+            $reverse = true;
+        }
+
+        if(!array_key_exists($key, self::ALIAS)){
             throw new \Exception("Method {$method} does not exists.");
         }
 
@@ -255,7 +227,7 @@ class Validator{
 
         $fieldname = array_shift($args);
 
-        $alias = self::ALIAS[$method];
+        $alias = self::ALIAS[$key];
         
         $params = empty($alias['params']) ? $args : $alias['params'];
             
@@ -264,7 +236,7 @@ class Validator{
         $rc = new \ReflectionClass($classname);
         $field = $rc->newInstanceArgs($params);
 
-        $this->add($fieldname, $field);
+        $this->add($fieldname, $field, $reverse);
 
         return $this;
     }

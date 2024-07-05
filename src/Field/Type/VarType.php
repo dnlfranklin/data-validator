@@ -17,7 +17,7 @@ class VarType extends Field{
         'MAC', 'NAN', 'NUMERIC', 'OBJECT', 'STRING', 'URL'  
     ];
 
-    public function __construct(private string $type, private bool $opposite = false){}
+    public function __construct(private string $type){}
     
     public function validate($value):bool {
         $type = strtoupper($this->type);
@@ -72,12 +72,6 @@ class VarType extends Field{
                 break;
             default:
                 $valid = true;
-        }
-
-        if($this->opposite && $valid){
-            parent::newError(Translator::translate("Cannot be %s", $type));
-            
-            return !$valid;
         }
 
         if(!$valid){
